@@ -1,6 +1,6 @@
-#from app.llm.client import GeminiClient
+from app.llm.client import GeminiClient
 from app.services.summarizer_service import SummarizerSevice
-from app.chat.chat_service import Chat_Service
+from app.chat.chat_service import ChatService
 
 
 def main():
@@ -15,12 +15,12 @@ def main():
     #summary = service.summarize(text)
     #print(summary)
     
-    c = Chat_Service()
+    c = ChatService()
 
     for i in range(3):
         p = input("tu turno de hablar: ")
 
-        response = c.Send_Message(p)
+        response = c.send_message(p)
 
         print(f"\nAsistente: {response}\n")
         

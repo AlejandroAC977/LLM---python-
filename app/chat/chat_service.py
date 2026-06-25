@@ -2,13 +2,13 @@ from app.chat.memory import ChatMemory
 from app.prompt.chat_prompt_builder import ChatPromptBuilder
 from app.llm.client import GeminiClient
 
-class Chat_Service:
+class ChatService:
     def __init__(self):
         self.memory = ChatMemory()
         self.promp_builder = ChatPromptBuilder()
         self.llm = GeminiClient()
 
-    def Send_Message(self, user_message: str)->str:
+    def send_message(self, user_message: str)->str:
         messages = self.memory.get_messages()
         prompt = self.promp_builder.build_chat_prompt(messages, user_message)
 
