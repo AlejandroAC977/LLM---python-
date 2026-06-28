@@ -1,6 +1,6 @@
 from app.llm.client import GeminiClient
 from app.services.summarizer_service import SummarizerSevice
-from app.chat.chat_service import ChatService
+from app.services.chat_service import ChatService
 
 
 def main():

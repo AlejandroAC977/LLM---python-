@@ -1,5 +1,5 @@
 from app.llm.client import GeminiClient
-from app.prompt.builder import PromptBuilder
+from app.prompt.summary_prompt_builder import PromptBuilder
 
 """ Esta clase funciona como un orquestador de las demas funciones provinientes de client.py y builder.py (las ejecuta en conjunto) """
 class SummarizerSevice:

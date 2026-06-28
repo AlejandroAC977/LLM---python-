@@ -13,9 +13,9 @@ class ChatService:
         prompt = self.promp_builder.build_chat_prompt(messages, user_message)
 
         # temporal print del prompt 
-        print(f"prompt entero enviado: \n {prompt} \n ------------------------------------")
-
-        print(self.memory.get_messages())
+        #print(f"prompt entero enviado: \n {prompt} \n ------------------------------------")
+        #print(self.memory.get_messages())
+        
         response = self.llm.generate(prompt)
 
         # Agregamos el mensaje del usario y del asistente al historial 
