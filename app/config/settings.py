@@ -8,6 +8,9 @@ class Settings:
         """ centraliza la configuaracion de la app """
         self.GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
         self.GEMINI_MODEL = "gemini-2.5-flash"
+        """ configuracion de las variables de chunking """
+        self.chunk_size = 500
+        self.chunk_overlap = 100
 
 settings = Settings()
 
