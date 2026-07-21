@@ -1,5 +1,5 @@
 from google import genai
-from app.config import settings # dentro de config tengo settings donde creo toda la instancia de mi nombre de modelo y su apikey
+from app.config.settings import settings # dentro de config tengo settings donde creo toda la instancia de mi nombre de modelo y su apikey
 
 class GeminiClient:
     """ Cliente para interactuar con gemini """

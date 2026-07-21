@@ -8,8 +8,11 @@ from app.config.settings import settings
 from app.loaders.pdf_loader import PdfLoader
 from app.chunkers.text_chunker import TextChunker
 
+import pandas as pd
+
 def main():
     
+    # Primer Prueba 
     #service = SummarizerSevice()
 
     #text = """ 
@@ -31,15 +34,40 @@ def main():
 
         print(f"\nAsistente: {response}\n")
     """
+    
 
+#Prueba tecnica, implementacion del modelo para clasificar respuestas
+    # c = GeminiClient()
+    # df = pd.read_csv(r"C:\Users\alejandro\Documents\LLM-googleIA-studio\app\data\documents\mat-apoyo.csv")
+    # df["Clasificación"] = ""
+
+    # for iteracion, fila in df.iterrows():
+    #     resp = fila["respuesta"]
+    #     pr = f"""
+    #         Eres un analista de datos experto en experiencia del cliente.
+    #         Tu tarea es analizar la respuesta a la pregunta "¿Qué tan satisfecho estás con el servicio de atención al cliente?".
+
+    #         Usa solo una de estas tres categorias:
+    #         - Positivo 
+    #         - Negativo 
+    #         - Neutro
+    #         Regla estricta: Responde solo con la palabra de la categoría (ej. "Positivo"). No agregues puntos, saludos ni explicaciones.
+
+    #         Respuesta: {resp}
+    #         """
+    #     rfinal = c.generate(prompt=pr)
+    #     df.loc[iteracion, "Clasificación"] = rfinal
+
+    # df.head()
+    # df.to_csv("C:/Users/alejandro/Downloads/mat-apoyo-completo.csv", index=False)
 
     load = PdfLoader()
     lista_documents = load.load(r"C:\Users\alejandro\Documents\LLM-googleIA-studio\app\data\documents\informeFinal.pdf")
 
     chunker = TextChunker(settings.chunk_size, settings.chunk_overlap)
-    chunker.chunk(lista_documents)  
-
-
+    lista_chunks = chunker.chunk(lista_documents)  
+    print(lista_chunks[12])
+    
 if __name__ == "__main__":
     main()
 
