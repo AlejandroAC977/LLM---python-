@@ -7,8 +7,17 @@ class EmbeddingClient:
         self.model =  settings.GEMINI_EMBEDDING_MODEL
     
     def create_embedding(self, text: str):
-        
-        result = self.client.models.embed_content(
-        model=self.model,
-        contents=text,
-        )
+        try:
+            result = self.client.models.embed_content(
+            model=self.model,
+            contents=text,
+            )
+            #print(result)
+            #print(type(result))
+            #print(dir(result))
+
+            return result.embeddings[0].values
+        except Exception as e:
+            raise RuntimeError(
+                f"Error al generar embedding: {e}"
+            )   
