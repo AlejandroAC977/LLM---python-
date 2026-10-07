@@ -108,7 +108,16 @@ def main():
     results = store.search(embedd, n_results= 3)
     print(results)
 
+    from app.retrievers.retrievers import Retriver
+    from app.services.ContextBuilder import contextBuilder
 
+    r = Retriver(embedding_client, store)
+    res = r.retrive("¿que temaño tuvo el dataset?")
+    print("---------------")
+    print(res[0])
+    print("-----------------")
+    text = contextBuilder(res)
+    print(text)
 
     
 if __name__ == "__main__":
