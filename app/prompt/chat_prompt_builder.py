@@ -4,6 +4,7 @@ class ChatPromptBuilder:
     def build_chat_prompt(
             self,
             messages: list[dict],
+            retrievers: str,
             user_message: str
     ) -> str:
         history_text = ""
@@ -18,7 +19,7 @@ class ChatPromptBuilder:
         return F"""
         Eres un asistente útil y profesional.
 
-        Tu objetivo es responder usando el contexto de la conversación.
+        Tu objetivo es responder usando el contexto de la conversación e informacion proporcionada desde un documento.
 
         Historial de conversación:
 
@@ -28,5 +29,10 @@ class ChatPromptBuilder:
 
         {user_message}
 
-        Responde de forma clara y precisa.   
+        Infromacion proporcinada desde el documento:
+
+        {retrievers}
+
+        Responde de forma clara y precisa.  
+        
             """

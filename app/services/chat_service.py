@@ -1,16 +1,30 @@
 from app.chat.memory import ChatMemory
 from app.prompt.chat_prompt_builder import ChatPromptBuilder
 from app.llm.client import GeminiClient
+from app.retrievers.retrievers import Retriver
+from app.services.ContextBuilder import contextBuilder
+
+from app.vectorstores.chroma_store import ChromaStore
+from app.embeddings.embedding_client import EmbeddingClient
 
 class ChatService:
     def __init__(self):
         self.memory = ChatMemory()
         self.promp_builder = ChatPromptBuilder()
         self.llm = GeminiClient()
+        self.embbed = EmbeddingClient()
+        self.store = ChromaStore()
+        self.retriever = Retriver(self.embbed, self.store)
+
 
     def send_message(self, user_message: str)->str:
+        
+        retrieve = self.retriever.retrive(user_message)
+        #retrieve = self.retriever.parse_dict(retrieve[0])
+        retrieve = contextBuilder(retrieve)
+
         messages = self.memory.get_messages()
-        prompt = self.promp_builder.build_chat_prompt(messages, user_message)
+        prompt = self.promp_builder.build_chat_prompt(messages, user_message, retrieve)
 
         # temporal print del prompt 
         #print(f"prompt entero enviado: \n {prompt} \n ------------------------------------")

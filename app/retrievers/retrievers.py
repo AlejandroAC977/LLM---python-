@@ -42,3 +42,5 @@ class Retriver:
             chunks.append(chunk)
     
         return chunks
+
+

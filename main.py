@@ -12,7 +12,7 @@ import pandas as pd
 
 def main():
 # --------------------------------------------------------------------------------------------------------------------    
-    # Primer Prueba 
+    # Primer Pruebaa
     #service = SummarizerSevice()
 
     #text = """ 
@@ -99,25 +99,42 @@ def main():
     
     # probaremos la busqueda de emmbedings dentro de nuestra base vectorial de chroma con el metodo search y un embedding hecho de una 
     # pregunta relacionada a la informacion 
-    from app.vectorstores.chroma_store import ChromaStore
-    from app.embeddings.embedding_client import EmbeddingClient
 
-    embedding_client = EmbeddingClient()
-    store = ChromaStore()
-    embedd=embedding_client.create_embedding("¿Cuantas y cuales categorias existen en la clasificacion de basura para este modelo?")
-    results = store.search(embedd, n_results= 3)
-    print(results)
+    # all retrieve 
+    # from app.vectorstores.chroma_store import ChromaStore
+    # from app.embeddings.embedding_client import EmbeddingClient
 
-    from app.retrievers.retrievers import Retriver
-    from app.services.ContextBuilder import contextBuilder
+    # embedding_client = EmbeddingClient()
+    # store = ChromaStore()
+    # embedd=embedding_client.create_embedding("¿Cuantas y cuales categorias existen en la clasificacion de basura para este modelo?")
+    # results = store.search(embedd, n_results= 3)
+    # print(results)
 
-    r = Retriver(embedding_client, store)
-    res = r.retrive("¿que temaño tuvo el dataset?")
-    print("---------------")
-    print(res[0])
-    print("-----------------")
-    text = contextBuilder(res)
-    print(text)
+    # from app.retrievers.retrievers import Retriver
+    # from app.services.ContextBuilder import contextBuilder
+
+    # r = Retriver(embedding_client, store)
+    # res = r.retrive("¿que temaño tuvo el dataset?")
+    # print("---------------")
+    # print(res[0])
+    # print("-----------------")
+    # text = contextBuilder(res)
+    # print(text)
+
+    # ------------------------------------------------------------------------------------------
+
+    
+    c = ChatService()
+    
+    while True:
+        p = input("Tu turno de hablar: ")
+
+        response = c.send_message(p)
+        if p.lower() == "exit":
+            break
+
+        print(f"\nAsistente: {response}\n")
+    
 
     
 if __name__ == "__main__":
