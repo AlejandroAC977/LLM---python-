@@ -20,4 +20,4 @@ class EmbeddingClient:
         except Exception as e:
             raise RuntimeError(
                 f"Error al generar embedding: {e}"
-            )   
+            )
